@@ -1,29 +1,31 @@
-# Taiwan Dead Cause ¥xÆW¦º¦]²Î­p 2008~2016
+# Taiwan Dead Cause å°ç£æ­»å› çµ±è¨ˆ 2008~2016
 
 I download dead cause data from government open data platform and clean them from raw data(csv) to database, add mapping and other works.  
-§Ú±q¬F©²¤½¶}¸ê®Æ¥­¥x¤U¸ü¤F¦º¦]²Î­p¸ê®Æ¡AµM«á±N­ì©l¸ê®Æ°µ¤F¾ã²z§Ë¦¨DB¡C
+æˆ‘å¾æ”¿åºœå…¬é–‹è³‡æ–™å¹³å°ä¸‹è¼‰äº†æ­»å› çµ±è¨ˆè³‡æ–™ï¼Œç„¶å¾Œå°‡åŸå§‹è³‡æ–™åšäº†æ•´ç†å¼„æˆDBã€‚
 
 You can restore backup database if using MSSQL, or import them one by one by script.  
-¦pªG§A¥ÎMSSQL¥i¥Hª½±µÁÙ­ìbackupÀÉ¡A©Î¬O¤@­Ó¤@­Óscript¶×¤J¡C
+å¦‚æœä½ ç”¨MSSQLå¯ä»¥ç›´æ¥é‚„åŸbackupæª”ï¼Œæˆ–æ˜¯ä¸€å€‹ä¸€å€‹scriptåŒ¯å…¥ã€‚
 
 Raw data have dead cause data since 1992, but the 1992-2007 dead cause id are different between from 2008-2016, so I only use data after 2008.  
-­ì©l¸ê®Æ¦³±q1992¦~¶}©lªº¦º¦]²Î­p¡A¦ı1992-2007ªº¦º¦]id¸ò2008-2016ªº¤£¤@¼Ë¡A©Ò¥H§Ú¥u¨Ï¥Î2008«áªº¸ê®Æ¡C
+åŸå§‹è³‡æ–™æœ‰å¾1992å¹´é–‹å§‹çš„æ­»å› çµ±è¨ˆï¼Œä½†1992-2007çš„æ­»å› idè·Ÿ2008-2016çš„ä¸ä¸€æ¨£ï¼Œæ‰€ä»¥æˆ‘åªä½¿ç”¨2008å¾Œçš„è³‡æ–™ã€‚
 
 
 ## File tree
 ```
 project
-¢u¢w¢w Dead.bak.zip             MSSQL backup file
-¢u¢w¢w Dead.sql.zip             Dead main table import script(zipped)
-¢u¢w¢w DeadAge.sql              Dead Age mapping
-¢u¢w¢w DeadCause.sql            Dead Cause mapping
-¢u¢w¢w DeadCounty.sql           Dead County 2011~
-¢u¢w¢w DeadCounty9799.sql       Dead County from 2008~2010*
-¢u¢w¢w DeadYearSum.sql          Dead count sum by year
-¢|¢w¢w ¦º¦]²Î­pDead Cause.zip    Raw data
+â”œâ”€â”€ Dead.bak.zip             MSSQL backup file*
+â”œâ”€â”€ Dead.sql.zip             Dead main table import script(zipped)
+â”œâ”€â”€ DeadAge.sql              Dead Age mapping
+â”œâ”€â”€ DeadCause.sql            Dead Cause mapping
+â”œâ”€â”€ DeadCounty.sql           Dead County 2011~
+â”œâ”€â”€ DeadCounty9799.sql       Dead County from 2008~2010**
+â”œâ”€â”€ DeadYearSum.sql          Dead count sum by year
+â””â”€â”€ æ­»å› çµ±è¨ˆDead Cause.zip    Raw data
 ```
-* : Taiwan's county changed at 2010, so the county id need reference to two table by year, if you only need large location, you can use [City] column in main table [Dead], I already fixed the county problem.  
-* : ¥xÆWªº¿¤¥«¦b2010¦³ÅÜ°Ê¡A©Ò¥H¿¤¥«id­n¨Ì·Ó¦~¥÷¹ïÀ³¨ì¤£¦Pªºtable¡A¦pªG§A¥u»İ­n¤j°Ï°ìªº¦a²z¸ê®Æ¡A¥i¥H¨Ï¥Î¥Dªí[Dead]¤¤ªº[City]Äæ¦ì¡A§Ú¤w¸g­×¥¿¤F¿¤¥«ÅÜ°Êªº°İÃD¡C
+*: bak file from Microsoft SQL Server 2016, if your version lower than it maybe can't restore it, but you still can using script file(.sql) import data.  
+*: bakæª”æ˜¯å¾MSSQL 2016å€’å‡ºä¾†çš„ï¼Œå¦‚æœä½ çš„ç‰ˆæœ¬æ¯”è¼ƒä½å¯èƒ½æ²’è¾¦æ³•é‚„åŸï¼Œä½†é‚„æ˜¯å¯ä»¥ç”¨scriptæª”(.sql)å»åŒ¯å…¥è³‡æ–™ã€‚ Â   
+**: Taiwan's county changed at 2010, so the county id need reference to two table by year, if you only need large location, you can use [City] column in main table [Dead], I already fixed the county problem. Â   
+**: å°ç£çš„ç¸£å¸‚åœ¨2010æœ‰è®Šå‹•ï¼Œæ‰€ä»¥ç¸£å¸‚idè¦ä¾ç…§å¹´ä»½å°æ‡‰åˆ°ä¸åŒçš„tableï¼Œå¦‚æœä½ åªéœ€è¦å¤§å€åŸŸçš„åœ°ç†è³‡æ–™ï¼Œå¯ä»¥ä½¿ç”¨ä¸»è¡¨[Dead]ä¸­çš„[City]æ¬„ä½ï¼Œæˆ‘å·²ç¶“ä¿®æ­£äº†ç¸£å¸‚è®Šå‹•çš„å•é¡Œã€‚ Â 
 
 ### Data Source
 data.gov.tw https://data.gov.tw/dataset/5965#r0
